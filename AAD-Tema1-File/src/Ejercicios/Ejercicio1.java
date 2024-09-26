@@ -1,4 +1,4 @@
-package Ejercicios;
+package ejercicios;
 import java.io.File;
 
 // Los comentarios son para mero uso personal.
