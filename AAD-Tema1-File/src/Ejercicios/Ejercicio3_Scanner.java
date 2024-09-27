@@ -66,7 +66,10 @@ public class Ejercicio3_Scanner {
 			// TODO: handle exception
 			System.out.println("No se pudo crear el fichero "+e.getMessage());
 			
+		}finally {
+			
 		}
+    	sc.close();
     	
     	}
 }     
