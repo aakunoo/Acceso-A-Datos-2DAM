@@ -11,7 +11,7 @@ public class Ejercicio4 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String ruta = "C:\\Users\\Manana\\Desktop\\Acceso-Datos-DAM2\\AAD-Tema1-File\\FicheroEjercicio4\\ZurronEstaMuyGordito.txt";
+		String ruta = "C:\\Users\\Manana\\Desktop\\Acceso-Datos-DAM2\\AAD-Tema1-File\\FicheroEjercicio4\\ejercicio4.txt";
 		
 		try (FileWriter escritor = new FileWriter(ruta)){
 			
