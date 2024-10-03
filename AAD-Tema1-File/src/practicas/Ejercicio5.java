@@ -10,6 +10,10 @@ public class Ejercicio5 {
 
 	/**
 	 * Ejercicio: Contar números en fichero de texto.
+	         String ruta=JOptionPane.showInputDialog(null, 
+                         "Inserta la ruta del fichero", 
+                         "Insercion", 
+                         JOptionPane.INFORMATION_MESSAGE);
 	 */
 	public static void main(String[] args) {
 		// Usamos JOptionPane para introducir la ruta del fichero
@@ -31,6 +35,13 @@ public class Ejercicio5 {
             	// Para comprobar si ese caracter es un numero
             	if (Character.isDigit(caracter)) {
             		contadorNumeros++; //Incrementa el contador si encontramos un numero.
+            		
+            		/*
+            		 * Podemos usar en vez de esto, con codigo ASCII
+            		 * if(c ) >= 48 && c <= 57){
+            		 * 		contadorNumeros++
+            		 * }
+            		 */
             	}
             }
             //Para mostrar el resultado:
