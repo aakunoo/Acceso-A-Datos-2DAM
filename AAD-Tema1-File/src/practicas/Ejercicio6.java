@@ -43,7 +43,7 @@ public class Ejercicio6 {
             // para mostrar un mensaje de éxito al usuario
             
             JOptionPane.showMessageDialog(null, "El fichero ha sido modificado correctamente.");
-            System.out.println("El fichero ha quedado reescrito de la siguiente forma : "+ "\n"); // Para mostrarlo en consola
+            System.out.println("El fichero ha quedado reescrito de la siguiente forma: "+ "\n"); // Para mostrarlo en consola
             System.out.println(contenido);
         } catch (IOException e) {
         	
@@ -54,3 +54,34 @@ public class Ejercicio6 {
         }
     }
 }
+
+/* Ejercicio corregido en clase hecho de otra forma:
+ 
+	  // Crear un objeto Scanner para leer desde la entrada estándar (teclado)
+	        Scanner scanner = new Scanner(System.in);
+	        System.out.print("Inserta la ruta del fichero: ");
+	        String ruta = scanner.nextLine();
+	        //Abrimos el stream de lectura
+	        //Abrimos otro de escritura (otro fichero distinto)
+	        try(FileReader fr=new FileReader(ruta);
+	                FileWriter fw=new FileWriter("C:\\AD\\convertFile.txt")){
+	            int caracter;
+	            String resultado="";
+	            //leemos el fichero
+	            while( (caracter = fr.read()) != -1 ){
+	                if(caracter >=97 && caracter <=122){ //Si es una minuscula, la pasamos a mayuscula 
+	                    resultado+=((char)(caracter-32));
+	                }else if(caracter!=32){ //Si es un espacio, no lo escribimos en el fichero
+	                    resultado+=(char)(caracter);
+	                }
+	            }
+	            //Guardamos el resultado en el nuevo fichero
+	            fw.write(resultado);
+	        }catch(IOException e){
+	            System.out.println("Error");
+	        }
+
+	    }
+	}
+	
+*/
