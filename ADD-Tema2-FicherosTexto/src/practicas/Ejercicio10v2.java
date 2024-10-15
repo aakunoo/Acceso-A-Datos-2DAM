@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class Ejercicio10v2 {
     public static void main(String[] args) {
         // Para definir la ruta de ambos archivos
-        String rutaArchivo = "C:\\Users\\Manana\\Desktop\\Acceso-Datos-DAM2\\ADD-Tema2-FicherosTexto\\Ejercicio10Archivo\\notas.txt"; // Asegúrate de colocar la ruta correcta
-        String archivoSuspensos = "C:\\Users\\Manana\\Desktop\\Acceso-Datos-DAM2\\ADD-Tema2-FicherosTexto\\Ejercicio10Archivo\\suspensos.txt"; // Archivo para los suspensos
+        String rutaArchivo = "./Ejercicio10Archivo/notas.txt"; // Asegúrate de colocar la ruta correcta
+        String archivoSuspensos = "./Ejercicio10Archivo/suspensos.txt"; // Archivo para los suspensos
 
         // Leemos las notas y luego escribimos las inferiores a 5 en suspensos.txt
         try {
