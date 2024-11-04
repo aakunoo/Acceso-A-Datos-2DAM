@@ -1,4 +1,4 @@
-package Serializacion.Practica2Serializacion;
+package ejercicios.Serializacion.Practica2Serializacion;
 
 import java.io.Serializable;
 

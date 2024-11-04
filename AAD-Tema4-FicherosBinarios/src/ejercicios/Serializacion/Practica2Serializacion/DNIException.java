@@ -1,4 +1,4 @@
-package Serializacion.Practica2Serializacion;
+package ejercicios.Serializacion.Practica2Serializacion;
 
 public class DNIException extends Exception {
     public static final String LONGITUD_NO_CORRECTA = "La longitud debe estar entre 8 y 9 caracteres";
