@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /*
@@ -19,21 +20,27 @@ public class Ejercicio2 {
 	public static void main(String[] args) {
 		try {
 			File archXML = new File("ciudades.xml");
+			// Instancia de DocumentBuilderFactory y DocumentBuilder para analizar el XML
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db;
-			db = dbf.newDocumentBuilder();
-			Document doc = db.parse(archXML);
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			Document doc = db.parse(archXML); // Parsear el archivo XML y obtener el documento DOM
 			
-			doc.getDocumentElement().normalize();
+			doc.getDocumentElement().normalize(); // normalizar XML.
             System.out.println("Elemento raíz: " + doc.getDocumentElement().getNodeName());
             
-            NodeList listaCiudades = doc.getElementsByTagName("ciudad");
+            NodeList listaCiudades = doc.getElementsByTagName("ciudad"); // Sacar todos los nodos llamados ciudad.
+            
             for (int i = 0; i < listaCiudades.getLength(); i++) {
-            	Element ciudad = (Element) listaCiudades.item(i);
-            		System.out.println("\nNombre Ciudad: " + ciudad.getElementsByTagName("nombre").item(0).getTextContent());
-            		System.out.println("Continente del Pais ID: " + ciudad.getAttribute("continente"));
-            		System.out.println("País: " + ciudad.getElementsByTagName("pais").item(0).getTextContent());
-             
+            	
+            	Node node = listaCiudades.item(i);
+            	
+            	if(node.getNodeType()==Node.ELEMENT_NODE) { // Verificar si el nodo es un nodo de elemento
+            		
+            		Element ciudad = (Element) listaCiudades.item(i); // Convierte cada elemento de la lista NodeList en un Element para poder trabajar con él.
+            			System.out.println("\nNombre Ciudad: " + ciudad.getElementsByTagName("nombre").item(0).getTextContent());
+            			System.out.println("Continente del Pais ID: " + ciudad.getElementsByTagName("pais").item(0).getAttributes().getNamedItem("continente").getTextContent());
+            			System.out.println("País: " + ciudad.getElementsByTagName("pais").item(0).getTextContent());
+            	}
             }
 		} catch (Exception e) {
 			
