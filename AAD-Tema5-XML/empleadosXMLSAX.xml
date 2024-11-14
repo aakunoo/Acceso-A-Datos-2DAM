@@ -1,0 +1,26 @@
+<empleados>
+	<empleado id="1">
+		<edad>42</edad>
+		<nombre>Valentin</nombre>
+		<genero>Masculino</genero>
+		<trabajo>Profesor</trabajo>
+	</empleado>
+	<empleado id="2">
+		<edad>21</edad>
+		<nombre>Marcos</nombre>
+		<genero>Masculino</genero>
+		<trabajo>Desarrollador</trabajo>
+	</empleado>
+	<empleado id="3">
+		<edad>20</edad>
+		<nombre>Seila</nombre>
+		<genero>femenino</genero>
+		<trabajo>Consultora</trabajo>
+	</empleado>
+	<empleado id="4">
+		<edad>23</edad>
+		<nombre>Alejandro</nombre>
+		<genero>Masculino</genero>
+		<trabajo>Gerente</trabajo>
+	</empleado>
+</empleados>

@@ -1,0 +1,12 @@
+<catalogo>
+    <libro id="1">
+        <titulo>Java Programming</titulo>
+        <autor>Jane Doe</autor>
+        <precio>39.95</precio>
+    </libro>
+    <libro id="2">
+        <titulo>Effective Java</titulo>
+        <autor>Joshua Bloch</autor>
+        <precio>45.00</precio>
+    </libro>
+</catalogo>
