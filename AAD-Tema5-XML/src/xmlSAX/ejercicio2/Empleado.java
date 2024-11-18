@@ -6,8 +6,8 @@ public class Empleado {
 
 	@Override
 	public String toString() {
-		return "Empleado ID=" + id + " Nombre: " + nombre + ", Edad: " + edad + ", Genero: " + genero + ", Trabajo: "
-				+ trabajo;
+		return "Empleado ID=" + this.id + " Nombre: " + this.nombre + ", Edad: " + this.edad + ", Genero: "
+				+ this.genero + ", Trabajo: " + this.trabajo;
 	}
 
 	public Empleado(int id, int edad, String nombre, String genero, String trabajo) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grupos>
+    <grupo>
+        <nombre>DAM2A</nombre>
+        <tutor>Juan Carlos</tutor>
+        <alumnos>
+            <dni>45963248W</dni>
+            <dni>65467823S</dni>
+            <dni>74147414Q</dni>
+        </alumnos>
+    </grupo>
+    <grupo>
+        <nombre>DAM2C</nombre>
+        <tutor>Marcos</tutor>
+        <alumnos>
+            <dni>18898541U</dni>
+            <dni>23124569I</dni>
+        </alumnos>
+    </grupo>
+</grupos>

@@ -1,0 +1,11 @@
+{
+  "grupos" : [ {
+    "nombre" : "DAM2A",
+    "tutor" : "Juan Carlos",
+    "alumnos" : [ "45963248W", "65467823S", "74147414Q" ]
+  }, {
+    "nombre" : "DAM2C",
+    "tutor" : "Marcos",
+    "alumnos" : [ "18898541U", "23124569I" ]
+  } ]
+}

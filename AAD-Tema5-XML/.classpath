@@ -6,5 +6,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jakarta.activation-api-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jackson-databind-2.13.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jackson-core-2.13.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jackson-annotations-2.13.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/istack-commons-runtime-3.0.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jaxb-runtime-2.3.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jaxb-runtime-2.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
