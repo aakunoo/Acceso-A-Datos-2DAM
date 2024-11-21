@@ -1,0 +1,5 @@
+JuanPerez|DAM1|7.5|6.0|8.5
+MariaLopez|DAM2|4.5|5.5|3.0
+CarlosSanchez|DAM1|6.0|5.0|7.0
+LauraTorres|DAM2|8.5|9.0|7.5
+AnaRuiz|DAM1|3.5|4.0|5.5
