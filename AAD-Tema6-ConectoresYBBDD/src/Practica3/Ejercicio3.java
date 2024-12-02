@@ -35,6 +35,7 @@ public class Ejercicio3 {
             }
 			
 		resultadoConsulta.close();
+		sc.close();
 			
 			
 		} catch (SQLException e) {
