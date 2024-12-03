@@ -25,10 +25,11 @@ public class Ejercicio5 {
 	                    "FROM order_items " +
 	                    "JOIN orders ON order_items.order_id = orders.order_id " +
 	                    "GROUP BY customer_id " +
-	                    "HAVING SUM(unit_price * quantity) > ?";
+	                    "HAVING SUM(unit_price * quantity) > ?"; // Uso del placeholder para el valor límite.
 	            
+	            // Crear un objeto PreparedStatement para preparar la consulta SQL con parámetros
 				PreparedStatement ps = conexion.prepareStatement(sentenciasql);
-				ps.setDouble(1, 10000);
+				ps.setDouble(1, 10000); // valor límite para las ventas mayores a 10,000
 				
 				ResultSet resultadoConsulta = ps.executeQuery();
 				
