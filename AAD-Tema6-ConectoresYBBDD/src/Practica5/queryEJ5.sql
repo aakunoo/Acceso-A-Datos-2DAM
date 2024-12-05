@@ -1,5 +1,13 @@
-SELECT customer_id, 
-SUM(unit_price * quantity) AS total_ventas 
-FROM order_items 
-JOIN orders ON order_items.order_id = orders.order_id 
-GROUP BY customer_id
+SELECT 
+    c.name AS customer_name,
+    SUM(oi.quantity * oi.unit_price) AS total_sales
+FROM 
+    orders o
+INNER JOIN customers c ON o.customer_id = c.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY 
+    c.name
+HAVING 
+    SUM(oi.quantity * oi.unit_price) > 10000
+ORDER BY 
+    total_sales DESC;

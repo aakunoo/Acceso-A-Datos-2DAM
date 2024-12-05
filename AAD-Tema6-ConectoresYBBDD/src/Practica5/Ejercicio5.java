@@ -21,12 +21,21 @@ public class Ejercicio5 {
 
 		
 		try(Connection conexion = DriverManager.getConnection(url, user, password)){
-	            String sentenciasql = "SELECT customer_id, SUM(unit_price * quantity) AS total_ventas " +
-	                    "FROM order_items " +
-	                    "JOIN orders ON order_items.order_id = orders.order_id " +
-	                    "GROUP BY customer_id " +
-	                    "HAVING SUM(unit_price * quantity) > ?"; // Uso del placeholder para el valor límite.
-	            
+			String sentenciasql = """
+		            SELECT 
+		                c.name AS customer_name,
+		                SUM(oi.quantity * oi.unit_price) AS total_sales
+		            FROM 
+		                orders o
+		            INNER JOIN customers c ON o.customer_id = c.customer_id
+		            INNER JOIN order_items oi ON o.order_id = oi.order_id
+		            GROUP BY 
+		                c.name
+		            HAVING 
+		                SUM(oi.quantity * oi.unit_price) > ?
+		            ORDER BY 
+		                total_sales DESC
+		            """;
 	            // Crear un objeto PreparedStatement para preparar la consulta SQL con parámetros
 				PreparedStatement ps = conexion.prepareStatement(sentenciasql);
 				ps.setDouble(1, 10000); // valor límite para las ventas mayores a 10,000
@@ -37,9 +46,9 @@ public class Ejercicio5 {
 	            System.out.println("Clientes con ventas superiores a 10000:");
 	            System.out.println("-----------------------------------------");
 	            while (resultadoConsulta.next()) {
-	                int customerId = resultadoConsulta.getInt("customer_id");
-	                double totalVentas = resultadoConsulta.getDouble("total_ventas");
-	                System.out.println("Cliente ID: " + customerId + ", Total Ventas: " + totalVentas);
+	                String customerNombre = resultadoConsulta.getString("customer_name");
+	                double totalVentas = resultadoConsulta.getDouble("total_sales");
+	                System.out.println("Nombre Cliente: " + customerNombre + ", Total Ventas: " + totalVentas);
 	            }
 
 	            resultadoConsulta.close();
@@ -51,4 +60,5 @@ public class Ejercicio5 {
 	            sc.close();
 	        }
 	    }
+
 	}
