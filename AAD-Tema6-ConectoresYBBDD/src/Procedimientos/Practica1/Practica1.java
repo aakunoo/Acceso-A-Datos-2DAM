@@ -36,8 +36,11 @@ public class Practica1 {
         String orderDateInput = sc.nextLine();
         Date orderDate = Date.valueOf(orderDateInput);
 		
+   
         try (Connection conexion = DriverManager.getConnection(url, user, password)) {
 	        String llamProc = "{CALL nuevo_pedido(?, ?, ?, ?)}"; // CALL para llamar al procedimiento.
+	        
+	        
 			 try (CallableStatement cs = conexion.prepareCall(llamProc)) {
 	            cs.setInt(1, customerId);
 	            cs.setString(2, status);
@@ -48,7 +51,7 @@ public class Practica1 {
 	            }
 	            cs.setDate(4, orderDate);
 	
-	            // Ejecutar el procedimiento
+	            // ejecutar el procedimiento
 	            cs.execute();
 	            System.out.println("Nuevo pedido insertado correctamente.");
         }
