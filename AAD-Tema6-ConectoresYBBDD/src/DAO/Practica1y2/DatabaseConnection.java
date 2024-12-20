@@ -1,4 +1,4 @@
-package DAO.Practica1;
+package DAO.Practica1y2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

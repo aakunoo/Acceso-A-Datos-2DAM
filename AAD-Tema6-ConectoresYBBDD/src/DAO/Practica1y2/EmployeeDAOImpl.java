@@ -1,4 +1,4 @@
-package DAO.Practica1;
+package DAO.Practica1y2;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -85,5 +85,53 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    
+    // Implementaciones del segundo ejercicio. 
+    
+    @Override
+    public List<Employee> getEmployeesWithOrders() {
+        List<Employee> employeesWithOrders = new ArrayList<>();
+        String sql = "SELECT DISTINCT e.EMPLOYEE_ID, e.FIRST_NAME, e.LAST_NAME " +
+                     "FROM EMPLOYEES e " +
+                     "JOIN ORDERS o ON e.EMPLOYEE_ID = o.SALESMAN_ID";
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                employeesWithOrders.add(new Employee(
+                        rs.getInt("EMPLOYEE_ID"),
+                        rs.getString("FIRST_NAME"),
+                        rs.getString("LAST_NAME"),
+                        null, // Email no necesario
+                        null, // Phone no necesario
+                        null, // HireDate no necesario
+                        null  // JobTitle no necesario
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employeesWithOrders;
+    }
+
+    @Override
+    public List<Employee> getOrdersByEmployeeId(int employeeId) {
+        List<Employee> orders = new ArrayList<>();
+        String sql = "SELECT o.ORDER_ID, o.STATUS, o.ORDER_DATE " +
+                     "FROM ORDERS o " +
+                     "WHERE o.SALESMAN_ID = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, employeeId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                System.out.println("Order ID: " + rs.getInt("ORDER_ID") +
+                                   ", Status: " + rs.getString("STATUS") +
+                                   ", Order Date: " + rs.getDate("ORDER_DATE"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
     }
 }

@@ -1,4 +1,4 @@
-package DAO.Practica1;
+package DAO.Practica1y2;
 
 import java.sql.Date;
 
@@ -82,6 +82,13 @@ public class Employee {
 	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
+
+	//@Override
+	//public String toString() {
+		//return "Employee [employeeId=" + employeeId + ", name=" + name + ", lastName=" + lastName + ", email=" + email
+			//	+ ", phone=" + phone + ", hireDate=" + hireDate + ", jobTitle=" + jobTitle + "]";
+	//}
     
+	
     
 }

@@ -1,4 +1,4 @@
-package DAO.Practica1;
+package DAO.Practica1y2;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,6 +20,8 @@ public class Main {
                 System.out.println("4. Actualizar un empleado");
                 System.out.println("5. Eliminar un empleado");
                 System.out.println("6. Salir");
+                System.out.println("7. Ver empleados con pedidos");
+                System.out.println("8. Ver pedidos de un empleado");
                 System.out.print("Seleccione una opción: ");
                 opcion = sc.nextInt();
                 sc.nextLine(); // limpiar el buffer
@@ -65,7 +67,7 @@ public class Main {
                         // Listar todos los empleados
                         List<Employee> employees = employeeDAO.getAllEmployees();
                         System.out.println("\nLista de empleados:");
-                        employees.forEach(e -> System.out.println(e.getName() + " " + e.getLastName() + " (" + e.getEmail() + ")"));
+                        employees.forEach(e -> System.out.println(e.getEmployeeId() + " | " + e.getName() + " " + e.getLastName() + " (" + e.getEmail() + ")"));
                         break;
 
                     case 4:
@@ -97,6 +99,26 @@ public class Main {
                     case 6:
                         // Salir
                         System.out.println("Saliendo del programa...");
+                        break;
+                        
+                        
+                        // Implementaciones segundo ejercicio.
+                    case 7:
+                        // Ver empleados con pedidos
+                        List<Employee> employeesWithOrders = employeeDAO.getEmployeesWithOrders();
+                        if (employeesWithOrders.isEmpty()) {
+                            System.out.println("No hay empleados con pedidos.");
+                        } else {
+                            employeesWithOrders.forEach(e -> System.out.println("ID: " + e.getEmployeeId() +
+                                    ", Nombre: " + e.getName() + " " + e.getLastName()));
+                        }
+                        break;
+
+                    case 8:
+                        // Ver pedidos de un empleado
+                        System.out.print("Ingrese el ID del empleado: ");
+                        int empId = sc.nextInt();
+                        employeeDAO.getOrdersByEmployeeId(empId);
                         break;
 
                     default:
