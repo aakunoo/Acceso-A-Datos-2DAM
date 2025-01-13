@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 ene 2025, 12:30:22 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="EmployeeAudits" optimistic-lock="none" table="EMPLOYEE_AUDITS">
+        <id name="auditId" type="big_integer">
+            <column name="AUDIT_ID" precision="22" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="employeeId" type="big_integer">
+            <column name="EMPLOYEE_ID" not-null="true" precision="22" scale="0"/>
+        </property>
+        <property name="oldEmail" type="string">
+            <column length="255" name="OLD_EMAIL"/>
+        </property>
+        <property name="newEmail" type="string">
+            <column length="255" name="NEW_EMAIL"/>
+        </property>
+        <property name="changeDate" type="date">
+            <column length="7" name="CHANGE_DATE"/>
+        </property>
+    </class>
+</hibernate-mapping>

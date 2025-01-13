@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 ene 2025, 12:30:22 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Products" optimistic-lock="none" table="PRODUCTS">
+        <id name="productId" type="big_integer">
+            <column name="PRODUCT_ID" precision="22" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="ProductCategories" fetch="select" name="productCategories">
+            <column name="CATEGORY_ID" not-null="true" precision="22" scale="0"/>
+        </many-to-one>
+        <property name="productName" type="string">
+            <column length="255" name="PRODUCT_NAME" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column length="2000" name="DESCRIPTION"/>
+        </property>
+        <property name="standardCost" type="big_decimal">
+            <column name="STANDARD_COST" precision="9" scale="2"/>
+        </property>
+        <property name="listPrice" type="big_decimal">
+            <column name="LIST_PRICE" precision="9" scale="2"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="inventorieses" table="INVENTORIES">
+            <key>
+                <column name="PRODUCT_ID" not-null="true" precision="12" scale="0"/>
+            </key>
+            <one-to-many class="Inventories"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="orderItemses" table="ORDER_ITEMS">
+            <key>
+                <column name="PRODUCT_ID" not-null="true" precision="12" scale="0"/>
+            </key>
+            <one-to-many class="OrderItems"/>
+        </set>
+    </class>
+</hibernate-mapping>

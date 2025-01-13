@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 ene 2025, 12:30:22 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="OrderItems" optimistic-lock="none" table="ORDER_ITEMS">
+        <composite-id class="OrderItemsId" name="id">
+            <key-property name="itemId" type="long">
+                <column name="ITEM_ID" precision="12" scale="0"/>
+            </key-property>
+            <key-property name="orderId" type="long">
+                <column name="ORDER_ID" precision="12" scale="0"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="Products" fetch="select" name="products">
+            <column name="PRODUCT_ID" not-null="true" precision="12" scale="0"/>
+        </many-to-one>
+        <many-to-one class="Orders" fetch="select" insert="false" name="orders" update="false">
+            <column name="ORDER_ID" not-null="true" precision="12" scale="0"/>
+        </many-to-one>
+        <property name="quantity" type="big_decimal">
+            <column name="QUANTITY" not-null="true" precision="8" scale="2"/>
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column name="UNIT_PRICE" not-null="true" precision="8" scale="2"/>
+        </property>
+    </class>
+</hibernate-mapping>

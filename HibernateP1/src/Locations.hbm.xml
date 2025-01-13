@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 13 ene 2025, 12:30:22 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Locations" optimistic-lock="none" table="LOCATIONS">
+        <id name="locationId" type="big_integer">
+            <column name="LOCATION_ID" precision="22" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Countries" fetch="select" name="countries">
+            <column length="2" name="COUNTRY_ID"/>
+        </many-to-one>
+        <property name="address" type="string">
+            <column length="255" name="ADDRESS" not-null="true"/>
+        </property>
+        <property name="postalCode" type="string">
+            <column length="20" name="POSTAL_CODE"/>
+        </property>
+        <property name="city" type="string">
+            <column length="50" name="CITY"/>
+        </property>
+        <property name="state" type="string">
+            <column length="50" name="STATE"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="warehouseses" table="WAREHOUSES">
+            <key>
+                <column name="LOCATION_ID" precision="12" scale="0"/>
+            </key>
+            <one-to-many class="Warehouses"/>
+        </set>
+    </class>
+</hibernate-mapping>

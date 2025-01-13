@@ -1,9 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/XE</property>
-        <property name="hibernate.connection.username">OT</property>
         <property name="hibernate.connection.password">oracle123</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@//localhost:1521/XE</property>
+        <property name="hibernate.connection.username">OT</property>
+        <property name="hibernate.default_schema">OT</property>
         <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+        <property name="hibernate.hbm2ddl.auto">none</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="Orders.hbm.xml"/>
+        <mapping resource="Inventories.hbm.xml"/>
+        <mapping resource="Products.hbm.xml"/>
+        <mapping resource="OrderItems.hbm.xml"/>
+        <mapping resource="Countries.hbm.xml"/>
+        <mapping resource="Locations.hbm.xml"/>
+        <mapping resource="Employees.hbm.xml"/>
+        <mapping resource="EmployeeAudits.hbm.xml"/>
+        <mapping resource="Regions.hbm.xml"/>
+        <mapping resource="Contacts.hbm.xml"/>
+        <mapping resource="ProductCategories.hbm.xml"/>
+        <mapping resource="Customers.hbm.xml"/>
+        <mapping resource="Warehouses.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
