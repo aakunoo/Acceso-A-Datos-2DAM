@@ -1,5 +1,5 @@
 // default package
-// Generated 13 ene 2025, 12:30:21 by Hibernate Tools 6.5.1.Final
+// Generated 14 ene 2025, 9:02:49 by Hibernate Tools 6.5.1.Final
 
 import java.math.BigInteger;
 

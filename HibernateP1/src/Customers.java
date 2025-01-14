@@ -1,5 +1,5 @@
 // default package
-// Generated 13 ene 2025, 12:30:21 by Hibernate Tools 6.5.1.Final
+// Generated 14 ene 2025, 9:02:49 by Hibernate Tools 6.5.1.Final
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -16,7 +16,6 @@ public class Customers implements java.io.Serializable {
 	private String address;
 	private String website;
 	private BigDecimal creditLimit;
-	private Set orderses = new HashSet(0);
 	private Set contactses = new HashSet(0);
 
 	public Customers() {
@@ -28,13 +27,12 @@ public class Customers implements java.io.Serializable {
 	}
 
 	public Customers(BigInteger customerId, String name, String address, String website, BigDecimal creditLimit,
-			Set orderses, Set contactses) {
+			Set contactses) {
 		this.customerId = customerId;
 		this.name = name;
 		this.address = address;
 		this.website = website;
 		this.creditLimit = creditLimit;
-		this.orderses = orderses;
 		this.contactses = contactses;
 	}
 
@@ -76,14 +74,6 @@ public class Customers implements java.io.Serializable {
 
 	public void setCreditLimit(BigDecimal creditLimit) {
 		this.creditLimit = creditLimit;
-	}
-
-	public Set getOrderses() {
-		return this.orderses;
-	}
-
-	public void setOrderses(Set orderses) {
-		this.orderses = orderses;
 	}
 
 	public Set getContactses() {
