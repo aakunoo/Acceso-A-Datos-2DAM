@@ -1,0 +1,351 @@
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Principal {
+	
+	static Supermercado supermercado = new Supermercado();
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+        supermercado.getProductos().add(new Producto("Sopa", 0.60f, 0.21f, 5));
+        supermercado.getProductos().add(new Producto("Espagueti", 0.60f, 0.10f, 10));
+        supermercado.getProductos().add(new Producto("Tallarin", 0.50f, 0.10f, 8));
+		
+		if(login(sc)) {
+			
+			String menuOpciones =
+				 "\n----- MENU -----\n"
+				+ "\n1. Realizar Factura"
+				+ "\n2. Imprimir Factura"
+				+ "\n3. Guardar Clientes"
+				+ "\n4. Guardar Productos"
+				+ "\n5. Listar facturas extremas"
+				+ "\n0. Salir\n"
+				+ "\nSelecciona una opcion: ";
+					
+			ejecutaMenu(menuOpciones);
+		}
+	}
+	
+	public static boolean login(Scanner sc) {
+		
+		String [] usuarios = {"usuario1", "usuario2", "usuario3", "usuario4"};
+		String [] contras = {"contra1", "contra2", "contra3", "contra4"};
+		
+		System.out.println("--- Supermercado ---");
+		
+		System.out.print("\nIntroduce un usuario: ");
+		String userInput = sc.next();
+		
+		int indiceUser = -1;
+		for(int i = 0; i < usuarios.length; i++) {
+			if (usuarios[i].equals(userInput)) {
+				indiceUser = i;
+				break;
+			}	
+		}
+			
+		if (indiceUser == -1) {
+			System.out.println("Usuario no existente. Acceso denegado.");
+			System.out.println("Saliendo del programa...");
+			return false;
+		}
+			
+		System.out.print("Introduce la contrasena del usuario " + userInput + ": ");
+		String contraInput = sc.next();
+		
+			if(contras[indiceUser].equals(contraInput)) {
+				System.out.println("\nBienvenido " + userInput + "! ");
+				return true;
+			} else {
+				System.out.print("Contrasena incorrecta. Acceso denegado.");
+				System.out.println("\nSaliendo del programa...");
+				return false;
+			}
+	}
+	
+	public static void ejecutaMenu(String menu) {
+		
+		int opcion;
+		
+		do {
+			System.out.println(menu);
+			opcion = sc.nextInt();
+			sc.nextLine();
+			
+			switch (opcion) {
+			case 1:
+				ventaFactura();
+				break;
+			case 2:
+				imprimirFactura();
+				break;
+			case 3:
+				escribirClientes();
+				break;
+			case 4:
+				escribirProductos();
+				break;
+			case 5:
+				listarFacturas();
+				break;
+			case 0:
+				
+				System.out.println("Saliendo del programa...");
+				break;
+				
+			default: 
+				System.out.println("Opcion no valida. Intentalo de nuevo");
+				break;
+			}
+			
+		} while (opcion != 0);
+	}
+	
+	public static void ventaFactura() {
+		
+		System.out.println("Introduce el DNI del cliente: ");
+		String dni = sc.next();
+		
+		Cliente clienteEncontrado = null;
+		for(Cliente cli: supermercado.getClientes()) {
+			if(cli.getDni().equalsIgnoreCase(dni)) {
+				clienteEncontrado = cli;
+				break;
+			}
+			
+		}
+		
+		if(clienteEncontrado == null) {
+			System.out.println("El cliente no esta registrado, se piden los datos para el alta.\n");
+		
+		
+		System.out.println("Introduce el nombre del cliente: ");
+		String nombre = sc.next();
+
+		System.out.println("Introduce el apellido del cliente: ");
+		String apellido = sc.next();
+		
+		System.out.println("Introduce la direccion del cliente: ");
+		String direccion = sc.next();
+		
+		clienteEncontrado = supermercado.altaCliente(dni, nombre, apellido, direccion);
+		
+		
+		}
+		int idFactura = (int)(Math.random() * 1000);
+		Factura factura = new Factura(idFactura, dni);
+		
+		while(true) {
+			System.out.print("\nIntroduce el nombre del producto ('fin' para terminar): ");
+			String nombreProd = sc.next();
+			sc.nextLine();
+			
+			if (nombreProd.equalsIgnoreCase("fin")) {
+			    break;
+			}
+
+			
+			Producto pEncontrado = null;
+			for(Producto p : supermercado.getProductos()) {
+				if(p.getNombre().equalsIgnoreCase(nombreProd)) {
+					pEncontrado = p;
+					break;
+				}
+			}
+			
+			if (pEncontrado == null) {
+				System.out.println("No se encontro el producto: " + nombreProd);
+				continue;
+			}
+			
+			System.out.println("Cuantas unidades quieres comprar?: ");
+
+			int unidades = sc.nextInt();
+			sc.nextLine();
+			
+			if(unidades > pEncontrado.getUnidadesDisponibles()) {
+				System.out.println("Stock insuficiente para " + nombreProd + ". Hay disponibles " + pEncontrado.getUnidadesDisponibles());
+				continue;
+			}
+			
+			float pvp = pEncontrado.getPrecio() 
+					+ (pEncontrado.getPrecio() * pEncontrado.getTipoIVA());
+			
+			lineaVenta lv = new lineaVenta(pEncontrado.getNombre(), unidades, pvp);
+			factura.getDetalle().add(lv);
+			
+			pEncontrado.setUnidadesDisponibles(pEncontrado.getUnidadesDisponibles() - unidades);
+		
+	}
+	
+	float total = 0f;
+	for (lineaVenta lv : factura.getDetalle()) {
+		total += lv.getPvp() * lv.getUnidadesVendidas();
+		
+	}
+	
+	factura.setImporteTotal(total);
+	clienteEncontrado.getFactura().add(factura);
+	System.out.println("Factura registrada con el numero " + factura.getIdentificador() + ". ");
+	
+	
+	}
+
+	public static void imprimirFactura() {
+		
+		System.out.print("Introduce el DNI del cliente: ");
+		String dni = sc.next();
+		
+		Cliente clienteEncontrado = null;
+		for(Cliente cliente : supermercado.getClientes()) {
+			if(cliente.getDni().equals(dni)) {
+				clienteEncontrado = cliente;
+				break;
+			}
+			
+		}
+		
+		if(clienteEncontrado == null) {
+			System.out.println("No existe un cliente con DNI: " + dni);
+			return;
+		}
+		
+		System.out.println("Introduce el numero de factura: ");
+		int idFactura = sc.nextInt();
+		sc.nextLine();
+		
+		Factura facturaLocalizada = null;
+		
+		for (Factura f : clienteEncontrado.getFactura()) {
+			if (f.getIdentificador() == idFactura) {
+				facturaLocalizada = f;
+				break;
+			}
+		}
+		
+		if (facturaLocalizada == null) {
+			System.out.println("No hay ninguna factura con el identificador: " + idFactura);
+			return;
+		}
+		
+		System.out.println("\n==================== FACTURA ORDINARIA ====================");
+        System.out.println("N.FACT.O: " + String.format("%08d", facturaLocalizada.getIdentificador()));
+        System.out.println("Cliente: " + clienteEncontrado.getNombre() 
+                + " " + clienteEncontrado.getApellido());
+        System.out.println(clienteEncontrado.getDni());
+        System.out.println(clienteEncontrado.getDireccion());
+        System.out.println("*****PVP IVA INCLUIDO*****\n");
+
+        for (lineaVenta lv : facturaLocalizada.getDetalle()) {
+            float subtotal = lv.getPvp() * lv.getUnidadesVendidas();
+            System.out.println(lv.getNombre());
+            System.out.println(lv.getUnidadesVendidas() + " X " 
+                    + String.format("%.2f", lv.getPvp()) 
+                    + "  =  " + String.format("%.2f", subtotal));
+        }
+        System.out.println("\n============================================");
+        System.out.println("TOTAL A PAGAR: " + String.format("%.2f", facturaLocalizada.getImporteTotal()));
+        System.out.println("============================================\n");
+    }
+
+
+	
+    public static void escribirClientes() {
+    	
+    	String ruta = "/Users/jeronimovicente/Desktop/ProgramacionPrimero/ProgramacionJAVA/src/examenFinal/clientes.bin";
+    			
+    	try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ruta))){
+    		oos.writeObject(supermercado.getClientes());
+    		System.out.println("Clientes guardados correctamente en " + ruta + ". ") ;
+    	} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+    	
+    }
+    
+    public static void escribirProductos() {
+    	
+    	String ruta = "/Users/jeronimovicente/Desktop/ProgramacionPrimero/ProgramacionJAVA/src/examenFinal/productos.dat";
+    	
+    	try(DataOutputStream dos = new DataOutputStream(new FileOutputStream(ruta))){
+    		
+    		ArrayList<Producto> prods = (ArrayList<Producto>) supermercado.getProductos();
+    		dos.writeInt(prods.size());
+    		
+    		for (Producto p : prods) {
+    			dos.writeUTF(p.getNombre());
+    			dos.writeFloat(p.getPrecio());
+    			dos.writeFloat(p.getTipoIVA());
+    			dos.writeInt(p.getUnidadesDisponibles());
+    		}
+    		
+    		System.out.println("Productos guardados correctamente en " + ruta + ". ");
+    		
+    	} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+    
+    }
+    
+    public static void listarFacturas() {
+        ArrayList<Producto> listaProds = (ArrayList<Producto>) supermercado.getProductos();
+        if (listaProds.isEmpty()) {
+            System.out.println("No hay productos registrados.");
+            return;
+        }
+        
+        Producto masBarato = listaProds.get(0);
+        Producto masCaro   = listaProds.get(0);
+
+        for (Producto p : listaProds) {
+            if (p.getPrecio() < masBarato.getPrecio()) {
+                masBarato = p;
+            }
+            if (p.getPrecio() > masCaro.getPrecio()) {
+                masCaro = p;
+            }
+        }
+        String nombreBarato = masBarato.getNombre();
+        String nombreCaro   = masCaro.getNombre();
+
+        System.out.println("\nFacturas que contienen el producto más barato ('" 
+                + nombreBarato + "') o el más caro ('" + nombreCaro + "'):\n");
+
+        for (Cliente cli : supermercado.getClientes()) {
+            for (Factura f : cli.getFactura()) {
+                boolean contieneBaratoOCaro = false;
+                for (lineaVenta lv : f.getDetalle()) {
+                    // Atento: si tu getter es getNombreProducto(), cámbialo
+                    if (lv.getNombre().equalsIgnoreCase(nombreBarato) 
+                     || lv.getNombre().equalsIgnoreCase(nombreCaro)) {
+                        contieneBaratoOCaro = true;
+                        break;
+                    }
+                }
+                if (contieneBaratoOCaro) {
+                    System.out.println("Cliente: " + cli.getNombre() + " " + cli.getApellido() 
+                            + " (DNI: " + cli.getDni() + ")");
+                    System.out.println("   Factura Nº: " + f.getIdentificador() 
+                            + " | Importe total: " + f.getImporteTotal());
+                    System.out.println("---------------------------------------------");
+                }
+            }
+        }
+    }
+    
+}
