@@ -6,22 +6,22 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/hibernate-core-5.5.5.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/hibernate-jpa-2.1-api-1.0.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/istack-commons-runtime-3.0.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/javax.persistence-api-2.2 (2).jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/javax.transaction-api-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jaxb-api-2.3.1 (1).jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jaxb-runtime-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/jboss-logging-3.4.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/slf4j-api-1.7.36.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/slf4j-simple-1.7.36.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/activation-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/byte-buddy-1.10.22.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/classmate-1.5.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/dom4j-2.1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/hibernate-commons-annotations-5.1.2.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/ojdbc17.jar"/>
+	<classpathentry kind="lib" path="lib/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="lib/byte-buddy-1.10.22.jar"/>
+	<classpathentry kind="lib" path="lib/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-2.1.3.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-commons-annotations-5.1.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-core-5.5.5.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hibernate-jpa-2.1-api-1.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/istack-commons-runtime-3.0.12.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence-api-2.2 (2).jar"/>
+	<classpathentry kind="lib" path="lib/javax.transaction-api-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api-2.3.1 (1).jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jboss-logging-3.4.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/ojdbc17.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.36.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

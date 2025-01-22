@@ -6,10 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Manana.DESKTOP-0QML5MI/Downloads/ojdbc17.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/ojdbc17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
