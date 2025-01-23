@@ -48,4 +48,31 @@ db.articulos.find(
 ).sort({ uv: 1 })
 
 
-// Consulta 6
+// Consulta 6 (artículos con uv menor que 5 o pvp mayor que 500 o categoría Escritorio.)
+db.articulos.find(
+    {
+        $or: [
+            { uv: { $lt: 5 } },
+            { pvp: { $gt: 500 } },
+            { categoría: "Escritorio" }
+        ]
+    })
+
+
+// Consulta 7 (que son de informática y tienen uv menor que cinco o los productos que son de deportes y tienen el stock mayor a 20 (mostrar solo denominación, categoría, stock y uv.))
+db.articulos.find(
+    {
+        $or: [
+            { $and: [{ categoría: "Informática" }, { uv: { $lt: 5 } }] },
+            { $and: [{ categoría: "Deportes" }, { stock: { $gt: 20 } }] }
+        ]
+    },
+    { denominación: 1, categoría: 1, stock: 1, uv: 1 }
+).sort({ stock: 1 })
+
+
+// Consulta 8 (actualizar el precio de venta de un artículo, codigo1, a 550$).
+db.articulos.updateOne(
+    { codigo: 1 },
+    { $set: { pvp: 550 } }
+)

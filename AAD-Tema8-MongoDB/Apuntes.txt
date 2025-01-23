@@ -1,0 +1,110 @@
+MongoDB Apuntes.
+
+- Cosas a tener en cuenta -
+
+cls = clear
+$eq (=) -> db.empresa.find({salario: { $eq : 30000}})
+$gt (>)
+$gte (>=)   
+$lt (<)
+$lte (<=)
+$ne (!=)
+$in (Está en una lista de valores)
+$nin (No está dentro de una lista de valores)
+
+$or -> db.empresa.find({$or: [{nombre: "Ana"}, {nombre: "Maria"}] })
+$and -> db.empresa.find({$and: [{nombre: "Ana"}, {departamento: "informatica"}] })
+$nor -> db.empresa.find({$nor: [{nombre: "Ana"}, {departamento: "informatica"}] }) // Igual que and, solo que en vez de ambos true, ambos false.
+$not -> db.empresa.find({salario: {$not: { $gt: 30000}}}) // salario no mayor a 30000
+$exists
+
+-----------------------------------------------------------------------------------------
+
+- Insert.
+
+// Inserta un registro en la colección que indiques. (students en este caso)
+db.students.insertOne({name: "Bob Esponja", age: 30, gpa: 3.2})$gte (>=)   
+
+
+// Inserta varios registros. [] -> Array
+db.students.insertMany([{{name: "Patricio Estrella", age: 38, gpa: 1.3},
+						 {{name: "Arenita", age: 23, gpa: 4.5},
+						 {{name: "Gary", age: 80, gpa: 2.5}])
+						 
+			
+-----------------------------------------------------------------------------------------
+			
+- Sort / Limit.
+
+// Esto ordenaría todos los registros por el nombre de forma alfabética.
+db.students.find().sort({name:1}) 
+
+// Al poner el -1, sería al revés.
+db.students.find().sort({name:-1}) 
+
+// Esto me sacaría sólo UN registro (por limit(1)).
+db.students.find().sort({gpa:-1}).limit(1)
+
+-----------------------------------------------------------------------------------------
+
+- Find.  .find({query}, {projection})
+
+// Me muestra todos los registros con todos sus campos.
+db.students.find()
+
+// Me devolvería todos los estudiantes con nombre Bob Esponja.
+db.students.find({name: "Bob Esponja"})
+
+// Para mostrar registros que cumplan dos (o más) condiciones.
+db.students.find({gpa: 4.0, fullTime: false})
+
+// Devuelve todos los documentos (registros), pero solo muestra el nombre.
+db.students.find({}, {name:True})
+
+// Para no mostrar el id del documento.
+_id:false
+
+-----------------------------------------------------------------------------------------
+
+- Update 
+
+- updateOne.
+
+// Actualiza sólo un documento. Tiene dos parámetros -> -updateOne(filter, update)
+db.students.updateOne({name: "Bob Esponja"},{$set: {fullTime: true}})  // filter es el criterio a cambiar, update los cambios a realizar.
+
+// Lo recomendable al actualizar un documento es hacerlo mediante su id.
+ _id: ObjectId('679285d26956634c53e3fd3a')
+ 
+ db.students.updateOne({_id: ObjectId("679285d26956634c53e3fd3a")}, {$set: {fullTime: false}})
+ 
+// Con $set, realizamos un update, con $unset DESHACEMOS los cambios.
+db.students.updateOne({_id: ObjectId("679285d26956634c53e3fd3a")}, {$unset: {fullTime: ""}}) // Tambien se puede eliminar un campo así.
+
+
+- updateMany. (Mismos parámetros que updateOne.
+
+// Selecciono todos los documentos, y les pongo el campo fullTime en false. (Si no tienen el campo se les crea)
+db.students.updateMany({}, {$set: {fullTime: false}}) 
+
+
+// Para eliminar el campo fullTime a algún documento.
+db.students.updateOne({name: "Gary"}, {$unset:{fulLTime:""}})
+
+// Si en los documentos el campo fullTime no existe, añadirlo y ponerlo como true.
+db.students.updateMany({fullTime: {$exists: false}}, {$set: {fullTime: true}})
+
+
+-----------------------------------------------------------------------------------------
+
+- Delete.
+
+- deleteOne. -> Un parámetro (filtro).
+
+// Elimina el estudiante con nombre "Larry"
+db.students.deleteOne({name: "Larry"})
+
+- deleteMany.
+
+// Todos los que tengan el campo fullTime: true, se eliminan.
+db.students.deleteMany({fullTime: false})
