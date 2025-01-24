@@ -5,7 +5,7 @@ db.articulos.find()
 //Consulta 2 (muestra artículos de categoría Informática, mostrando de estos artículos el código, la denominación y la categoría)
 db.articulos.find(
     { categoría: "Informática" },
-    { código: 1, denominación: 1, categoría: 1 }
+    { código: 1, denominación: 1, categoría: 1, _id: false }
 )
 
 
@@ -31,14 +31,13 @@ db.articulos.find(
 // Consulta 4 (Muestra los artículos con pvp menor a 100)
 db.articulos.find(
     { pvp: { $lt: 100 } }
-)
+).sort({categoría: 1})
 
 
 // Consulta 5 (Muestra los artículos con stock entre 10 y 20 (inclusive))
 db.articulos.find(
     { stock: { $gte: 10, $lte: 20 } }
 )
-
 
 
 // Consulta 5B (Muestra los artículos con stock entre 10 y 20 (inclusive) ordenados por unidades vendidas y sin mostrar el pvp)
@@ -73,6 +72,6 @@ db.articulos.find(
 
 // Consulta 8 (actualizar el precio de venta de un artículo, codigo1, a 550$).
 db.articulos.updateOne(
-    { codigo: 1 },
+    { código: 1 },
     { $set: { pvp: 550 } }
 )

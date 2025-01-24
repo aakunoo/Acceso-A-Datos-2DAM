@@ -17,6 +17,16 @@ $and -> db.empresa.find({$and: [{nombre: "Ana"}, {departamento: "informatica"}] 
 $nor -> db.empresa.find({$nor: [{nombre: "Ana"}, {departamento: "informatica"}] }) // Igual que and, solo que en vez de ambos true, ambos false.
 $not -> db.empresa.find({salario: {$not: { $gt: 30000}}}) // salario no mayor a 30000
 $exists
+$rename -> Renombra campos de un documento.
+
+.pretty() -> Muestra las consultas en un formato más legible.
+.count() -> Muestra la cantidad de documentos.
+
+$push -> Añade un valor a un array -> db.libros.updateMany({pvp: {$lt: 40}, codigosPaises: {$ne: 1} },{$push: {codigosPaises: 1}})
+$pull -> Nos permite eliminar valores dentro de un array, pero sin afectar al resto del documento.
+$addToSet -> Añade valor a un array a menos de qué esté ya presente. ->   {$addToSet: {codigosPaises: [127, 129]}}
+
+
 
 -----------------------------------------------------------------------------------------
 
@@ -108,3 +118,6 @@ db.students.deleteOne({name: "Larry"})
 
 // Todos los que tengan el campo fullTime: true, se eliminan.
 db.students.deleteMany({fullTime: false})
+
+
+.drop() -> Borra una colección.
