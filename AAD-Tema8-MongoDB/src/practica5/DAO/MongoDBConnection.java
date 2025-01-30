@@ -1,13 +1,14 @@
-package practica4;
+package practica5.DAO;
+
+import org.bson.Document;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
-public class MongoDBConnection { // Clase singleton
-	
+public class MongoDBConnection {
+
 	private static MongoDBConnection instancia;
 	private MongoClient mongoClient;
 	private MongoDatabase mongoDatabase; 
@@ -23,6 +24,10 @@ public class MongoDBConnection { // Clase singleton
 	            instancia = new MongoDBConnection();
 	        }
 	        return instancia;
+	    }
+	 
+	 public MongoDatabase getDatabase() {
+	        return this.mongoDatabase;
 	    }
 	 
 	 public MongoCollection<Document> getCollection(String collectionName) {
@@ -42,4 +47,6 @@ public class MongoDBConnection { // Clase singleton
 	    		System.out.println("Error. No se pudo cerrar la conexión.");
 	    	}
 	    }
-	}
+}
+	
+
