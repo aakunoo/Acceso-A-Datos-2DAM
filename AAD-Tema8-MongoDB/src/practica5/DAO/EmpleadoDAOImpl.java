@@ -25,16 +25,16 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 
         MongoDBConnection conexion = MongoDBConnection.getInstancia();
         MongoDatabase db = conexion.getDatabase();
+        
+        boolean coleccionExiste = db.listCollectionNames().into(new ArrayList<>()).contains("empleados");
 
-//        try {
-//            db.createCollection("empleados");
-//            System.out.println("Colección 'empleados' creada exitosamente.");
-//        } catch (Exception e) {
-//
-//            System.out.println("La colección 'empleados' ya existe o no se pudo crear.");
-//        }
-//
-//        this.coleccion = db.getCollection("empleados");
+        	if(!coleccionExiste) {
+        		db.createCollection("empleados");
+        		System.out.println("Coección 'empleados' creada.");
+        	}
+
+        coleccion = db.getCollection("empleados");
+        //system.out.println("DEBUG: Colección asignada: " + (this.coleccion == null ? "null" : this.coleccion));
     }
 
     @Override

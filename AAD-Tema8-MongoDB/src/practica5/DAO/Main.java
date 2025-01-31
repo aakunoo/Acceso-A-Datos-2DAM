@@ -27,6 +27,8 @@ public class Main {
             opcion = Integer.parseInt(sc.nextLine());
 
             switch (opcion) {
+            
+            	// Añadir empleado
                 case 1:
                     System.out.println("\n=== AÑADIR EMPLEADO ===");
                     Empleado nuevo = new Empleado();
@@ -65,18 +67,20 @@ public class Main {
                     }
                     break;
 
+                    // Mostrar empleado por NIF
                 case 2:
                     System.out.println("\n=== MOSTRAR EMPLEADO POR NIF ===");
                     System.out.print("Ingrese el NIF: ");
                     String nifBusqueda = sc.nextLine();
                     Empleado encontrado = empleadoDAO.buscarEmpleadoPorNIF(nifBusqueda);
                     if (encontrado != null) {
-                        System.out.println("Empleado encontrado: " + encontrado);
+                        System.out.println("\nEmpleado encontrado: " + encontrado + "\n");
                     } else {
                         System.out.println("No existe un empleado con ese NIF.");
                     }
                     break;
 
+                    // Mostrar todos los empleados
                 case 3:
                     System.out.println("\n=== MOSTRAR TODOS LOS EMPLEADOS ===");
                     List<Empleado> lista = empleadoDAO.buscarTodosLosEmpleados();
@@ -84,11 +88,12 @@ public class Main {
                         System.out.println("No hay empleados en la base de datos.");
                     } else {
                         for (Empleado emp : lista) {
-                            System.out.println(emp);
+                            System.out.println(emp +"\n---------------------------");
                         }
                     }
                     break;
-
+                    
+                    // Modificar salario empleado
                 case 4:
                     System.out.println("\n=== MODIFICAR SALARIO DE EMPLEADO ===");
                     System.out.print("Ingrese el NIF: ");
@@ -102,8 +107,9 @@ public class Main {
                         System.out.println("No se pudo actualizar el salario.");
                     }
                     break;
-
-                case 5:
+                    
+                    // Eliminar empleado.
+                case 5: 
                     System.out.println("\n=== ELIMINAR EMPLEADO POR NIF ===");
                     System.out.print("Ingrese el NIF: ");
                     String nifEliminar = sc.nextLine();
