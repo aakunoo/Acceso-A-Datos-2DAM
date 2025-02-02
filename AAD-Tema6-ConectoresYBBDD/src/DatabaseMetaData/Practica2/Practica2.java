@@ -25,6 +25,7 @@ public class Practica2 {
             
             mostrarInformacionBaseDatos(metaData);
             listarTablasYColumnas(metaData, user);
+            listarColumnasTabla(metaData, user, password);
                  
 		} catch (SQLException e) {
 	        e.printStackTrace();

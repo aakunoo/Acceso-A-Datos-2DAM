@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 feb 2025, 22:43:07 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Contacts" optimistic-lock="none" table="CONTACTS">
+        <id name="contactId" type="big_integer">
+            <column name="CONTACT_ID" precision="22" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Customers" fetch="select" name="customers">
+            <column name="CUSTOMER_ID" precision="22" scale="0"/>
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column length="255" name="FIRST_NAME" not-null="true"/>
+        </property>
+        <property name="lastName" type="string">
+            <column length="255" name="LAST_NAME" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="255" name="EMAIL" not-null="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="20" name="PHONE"/>
+        </property>
+    </class>
+</hibernate-mapping>

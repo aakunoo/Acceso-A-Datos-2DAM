@@ -17,7 +17,7 @@ public class PaisUnico {
             if (ciudad != null) {
                 System.out.println("País encontrado:");
                 System.out.println("ID: " + ciudad.getCountryId());
-                System.out.println("Nombre: " + ciudad.getCountryName());
+                  System.out.println("Nombre: " + ciudad.getCountryName());
                 System.out.println("Región ID: " + ciudad.getRegionId());
             } else {
                 System.out.println("No se encontró ningún país con el ID: " + idCiudad);

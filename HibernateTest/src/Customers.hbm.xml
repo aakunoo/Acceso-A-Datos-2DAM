@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 1 feb 2025, 22:43:07 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Customers" optimistic-lock="none" table="CUSTOMERS">
+        <id name="customerId" type="big_integer">
+            <column name="CUSTOMER_ID" precision="22" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="name" type="string">
+            <column length="255" name="NAME" not-null="true"/>
+        </property>
+        <property name="address" type="string">
+            <column length="255" name="ADDRESS"/>
+        </property>
+        <property name="website" type="string">
+            <column length="255" name="WEBSITE"/>
+        </property>
+        <property name="creditLimit" type="big_decimal">
+            <column name="CREDIT_LIMIT" precision="8" scale="2"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="contactses" table="CONTACTS">
+            <key>
+                <column name="CUSTOMER_ID" precision="22" scale="0"/>
+            </key>
+            <one-to-many class="Contacts"/>
+        </set>
+    </class>
+</hibernate-mapping>
