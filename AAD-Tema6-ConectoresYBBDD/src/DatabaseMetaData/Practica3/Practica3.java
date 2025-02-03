@@ -23,11 +23,7 @@ public class Practica3 {
         try (Connection conexion = DriverManager.getConnection(url, user, password)) {
             DatabaseMetaData metaData = conexion.getMetaData();
 
-            // 3) Mostrar la información general de la BD
             mostrarInformacionBaseDatos(metaData);
-
-            // 4) Listar Tablas y Vistas (puedes añadir más tipos como "SYNONYM", "SEQUENCE" si deseas)
-            //    Filtro: new String[]{"TABLE", "VIEW"} para incluir tanto tablas como vistas.
             listarTablasYVistas(metaData, user);
 
             // 5) Listar procedimientos y funciones
@@ -66,7 +62,6 @@ public class Practica3 {
     // ----------------------------------------------------------------
     private static void listarTablasYVistas(DatabaseMetaData metaData, String user) throws SQLException {
         // Podemos buscar tanto "TABLE" como "VIEW"
-        // Si quisiéramos más objetos, podríamos añadir "SYNONYM", "GLOBAL TEMPORARY", etc.
         String[] tipos = {"TABLE", "VIEW"};
 
         // getTables(catalog, schemaPattern, tableNamePattern, types)

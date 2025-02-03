@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 3 feb 2025, 11:37:11 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Persona" optimistic-lock="none" table="PERSONA">
+        <id name="codpersona" type="int">
+            <column name="CODPERSONA" precision="5" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Localidad" fetch="select" name="localidad">
+            <column name="CODLOCALIDAD" precision="5" scale="0"/>
+        </many-to-one>
+        <property name="dni" type="string">
+            <column length="10" name="DNI" not-null="true"/>
+        </property>
+        <property name="nombre" type="string">
+            <column length="20" name="NOMBRE"/>
+        </property>
+        <property name="apellidos" type="string">
+            <column length="40" name="APELLIDOS"/>
+        </property>
+        <property name="fechacarnet" type="date">
+            <column length="7" name="FECHACARNET"/>
+        </property>
+        <property name="puntosactuales" type="byte">
+            <column name="PUNTOSACTUALES" not-null="true" precision="2" scale="0"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="multasForCodpersonamultada" table="MULTA">
+            <key>
+                <column name="CODPERSONAMULTADA" precision="5" scale="0"/>
+            </key>
+            <one-to-many class="Multa"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="multasForCodagente" table="MULTA">
+            <key>
+                <column name="CODAGENTE" precision="5" scale="0"/>
+            </key>
+            <one-to-many class="Multa"/>
+        </set>
+    </class>
+</hibernate-mapping>

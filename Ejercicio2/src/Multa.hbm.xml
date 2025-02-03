@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 3 feb 2025, 11:37:11 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Multa" optimistic-lock="none" table="MULTA">
+        <id name="codmulta" type="int">
+            <column name="CODMULTA" precision="5" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="Persona" fetch="select" name="personaByCodpersonamultada">
+            <column name="CODPERSONAMULTADA" precision="5" scale="0"/>
+        </many-to-one>
+        <many-to-one class="Persona" fetch="select" name="personaByCodagente">
+            <column name="CODAGENTE" precision="5" scale="0"/>
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column length="100" name="DESCRIPCION" not-null="true"/>
+        </property>
+        <property name="importesancion" type="big_decimal">
+            <column name="IMPORTESANCION" precision="6" scale="2"/>
+        </property>
+        <property name="puntossancion" type="java.lang.Byte">
+            <column name="PUNTOSSANCION" precision="2" scale="0"/>
+        </property>
+        <property name="fechamulta" type="date">
+            <column length="7" name="FECHAMULTA"/>
+        </property>
+    </class>
+</hibernate-mapping>

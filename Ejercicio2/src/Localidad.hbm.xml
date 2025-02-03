@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 3 feb 2025, 11:37:11 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Localidad" optimistic-lock="none" table="LOCALIDAD">
+        <id name="codlocalidad" type="int">
+            <column name="CODLOCALIDAD" precision="5" scale="0"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nombre" type="string">
+            <column length="40" name="NOMBRE" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="personas" table="PERSONA">
+            <key>
+                <column name="CODLOCALIDAD" precision="5" scale="0"/>
+            </key>
+            <one-to-many class="Persona"/>
+        </set>
+    </class>
+</hibernate-mapping>
